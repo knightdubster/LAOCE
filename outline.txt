@@ -1,0 +1,29 @@
+Course Evaluation Survey
+
+Objective: Gather evaluation data from students taking Liberal 
+Arts Online courses.
+
+Process:
+	Students - login with WebAccess via Angel. Course ID is passed in URL. Submit form. Only one submission. Data is saved with course ID we give it and user's ID
+	
+	Instructors - Ability to review submitted data for a particular course
+		-instructor ID is added by admin when setting up evaluation		
+	Admin - View all data from all courses. Make changes to survey questions.  Display data as needed: by course, by ID association, by semester. Link in course must be changed each semester to direct to new evaluation
+	
+	SysAdmin  add Users (admins or ID)
+
+Evaluation form consists of three groups(assessments) of questions:
+
+	Standard form 
+	- 22 questions
+
+	Optional Instructor Questions
+	- 5 questions
+
+	Questions Pool
+	- Additional questions that can be added on coursename basis to target specific area of course
+	-evaluation form would search questions table for course ID that matches and add those questions to the form
+	
+Tables
+	-see createtables.php in sysadmin folder
+

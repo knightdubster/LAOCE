@@ -1,0 +1,215 @@
+*{
+	margin:0;
+	padding:0px;
+	}
+p{margin-bottom:1em;
+}
+
+body{
+	background-color:#000;
+	font-family:Arial;
+	}
+	
+#background{
+	width:1180px;
+	margin:0 auto;
+	background-image:url('images/sparks2.jpg');
+	background-color:#c7cbcc;
+	background-repeat:no-repeat;
+	}
+#container{
+	width:960px;
+	min-height:700px;
+	margin:0 auto;
+	}
+#content{
+	background-color:#fff;
+	padding:20px;
+	opacity:.9;
+	}
+
+#header{
+	padding-top:10px;
+	height:80px;
+}
+
+.laoce{
+	font-family:'Times New Roman',Times,serif;
+	font-size:1.6em;
+}
+
+.logo{
+	float:left;
+	width:130px;
+	margin-top:6px;
+}
+
+.roundcorners {
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+}
+	
+
+.pa{
+	font-weight:bold;
+	font-size:1.3em;
+	margin:5px 0;
+	}
+
+#titlebox{
+	padding:5px;
+	background-color:#F4FCA5;
+	color:#000;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#help{
+	float:right;
+	width:50px;
+}
+
+#help a{color:white;}
+#help a:visited{color:white;}
+
+#instrport a{
+	color:#000000;
+	}
+#instrport a:visited{
+	color:#000000;
+	}	
+
+.courseassessbox{
+	background-color:#F6F4EF;
+	padding:8px;
+	border:1px solid #336600;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#leftcol{
+	/*width:545px;
+	background-color:#F0FEE2;*/
+	height:100%;
+	background-color:#FFF;
+	padding:15px;
+	margin-right:5px;
+}
+
+.question{
+	border:1px solid #B6B6B6;
+	padding:5px;
+	margin:4px 0px;
+	}
+	
+.answer{
+	margin-left:15px;
+	}
+	
+.editButton{
+	float:right;
+	}
+	
+	
+.bluebox{
+	background-color:#E8E8FF;
+	padding:15px;
+	margin-left:10px;
+	}
+	
+#formbox{
+	width:550px;
+	height:100%;
+	background-color:#F0FEE2;
+	padding:15px;
+}
+
+	
+/*text styles*/
+.heading{
+	font-size:1.2em;
+	font-weight:bold;
+	}
+	
+.coursetitle{
+	background-color:#336600;
+	color:#FFFFFF;
+	padding:2px;
+	}
+.smallred{
+	font-size:.9em;
+	color:#FF0000;
+	}
+.indent{
+	margin-left:15px;
+	}
+.small{
+	font-size:.9em;
+}
+.data{
+	font-size:.8em;
+	color:red;
+	}
+.nodata{
+	font-size:.8em;
+	color:green;
+	}
+
+/*tables*/
+.courseassessmenttable td{
+	padding:3px 6px 3px 6px;
+	border:0;
+	}
+	
+.odd{
+	background-color:#F0FEE2;
+	}
+	
+.even{
+	background-color:#D4E8C0;
+	}
+	
+/*GRAPH STYLES*/
+.studentscore{
+	width:510px;
+	background-color:#FFFFFF;
+	background-image:url('images/lines.gif');
+	background-repeat:repeat-y;
+	border: solid 1px #000;
+	margin:0px;
+	padding:5px;
+	
+	}
+	
+.scorebox a{
+	color:#FFFFFF;
+	padding:5px;
+	}
+	
+.scorebox{
+	width:900px;
+	background-color:#CCFF99;
+	margin-bottom:4px;
+}
+.score{
+	background-color:#336600;
+	color:#FFFFFF;
+	padding:5px;
+	}
+.badscore{
+	background-color:#D33838;
+	color:#FFFFFF;
+	padding:5px;
+	}
+.formstyles{
+	border: 1px solid #000099;
+	padding:10px;
+	text-align:left;
+}
+		

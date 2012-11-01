@@ -1,0 +1,49 @@
+March 2012
+Score comparisons to analyze collected data. Admins/ID's can view pages comparing departments. Link on department page links to comparisons only within department.
+
+Using average score of 11 questions from the survey. These were all 5 point likert where higher score is best.  They are questionID 1 through 10, and 24.
+
+	
+Since the total scores for each semester will not change store these values in table. This greatly speeds the bar graph displays. Sysadmin to run script at end of semester to update table. Store total avg for semester and totals for each dept.
+
+Comparison Data Table 
+
+Courses		Semester	Score   evals
+all			all					# of courses
+all			SP11
+all			FA11
+ECON		all
+ECON		SP11
+
+Display will use table data.
+
+Cascading screens
+	1)Semesters
+		All semesters score
+		Each semester score - click semester to get to 
+	2)Departments
+		Total score for that semester all depts
+		Total score for each Department that semester - 
+	3)Course comparision in that Department or Semester
+
+	5) Course - diplay full evaluation
+	
+Data for course comparisons is generated as called which sometimes takes several seconds.
+	 
+CourseInfo table: 
+	get all evalID's for given semester
+	
+	get evalID's for coursename AND semester
+	
+foreach evalID- 
+	Scoring table:
+		foreach questionID 1-10
+		get score WHERE evalID = evalID and questionID=questionID
+		
+		$totalScore = $totalScore . $score
+		
+Department - All courses vs each department score
+	Click on department to get to next
+
+Courses in department - All vs courses in a department
+	Click on course to get individual course
