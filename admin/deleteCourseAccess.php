@@ -16,7 +16,7 @@ include "validateID.php";
 $query = mysql_query("DELETE FROM CourseAccess WHERE rowID = '$rowID'");
 
 //GO TO admin.php
-$goto = "courseAccessTable.php";
+$goto = "courseAccess.php";
 echo "<script> window.location.href = '$goto' </script>";
 
 

@@ -89,7 +89,7 @@ Eval ID <input type='text' name='evalID' size='6'/>
 	Lastname: <input name="lastname" type="text" size="20"/><br>
 	Role: 
 	<select name="role">
-	<option value="instructor">id</option>
+	<option value="id">id</option>
 	<option value="admin">admin</option>
 	</select><br>
 	<input type="submit" value="Register/Edit User"/>

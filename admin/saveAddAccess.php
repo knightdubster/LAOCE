@@ -36,7 +36,9 @@ function checkit($formvalue){
 
 $query = mysql_query("INSERT INTO CourseAccess (coursename, userID, firstname, lastname)VALUES ('$coursename','$instructorID','$firstname','$lastname')");
 
-
+//GO TO admin.php
+$goto = "courseAccess.php";
+echo "<script> window.location.href = '$goto' </script>";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

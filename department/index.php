@@ -101,29 +101,45 @@ $(document).ready(function(){
 <div id="content" class='roundcorners'> 
 <?php
 //CREATE ARRAY OF COURSENAMES FOR ACCESS
+$displayComparisonLinks=0; //set flag - only show comparison links if department access
 $i=0;
 $courseAccess[]=array();
 	$query = mysql_query("SELECT coursename from CourseAccess WHERE userID ='$userID'");
 	while($row = mysql_fetch_array($query)){
-		$courseAccess[$i]=$row['coursename'];
+		$coursename=$row['coursename'];
+		$courseAccess[$i]=$coursename;
+		//if no course number then department access, set flag to display
+		if (!preg_match('#[0-9]#',$coursename)){
+			$displayComparisonLinks = 1;
+		}
 		$i++;
 	}
 
-
-//GET COURSE INFO - SET ARRAY OF EVALID'S
-$evalIDs[]=array();
-$i=0;//increment evalIDs array
-
-foreach($courseAccess as $access){
+if(in_array('ALL',$courseAccess)){
+	//FULL ACCESS - ALL EVALID'S
+	$evalIDs[]=array();
+	$i=0;//increment evalIDs array
 	$query = mysql_query("SELECT * from CourseInfo");
 		while($row = mysql_fetch_array($query)){
-			$coursename=$row['coursename'];
-			$pos = (strpos($coursename,$access));
-			if($pos !== false){
+			$evalIDs[$i] = $row['evalID'];
+			$i++;
+		}
+}else{
+	//LIMITED ACCESS - GET COURSE INFO - SET ARRAY OF EVALID'S
+	$evalIDs[]=array();
+	$i=0;//increment evalIDs array
+
+	foreach($courseAccess as $access){
+		$query = mysql_query("SELECT * from CourseInfo");
+			while($row = mysql_fetch_array($query)){
+				$coursename=$row['coursename'];
+				$pos = (strpos($coursename,$access));
+				if($pos !== false){
 				$evalIDs[$i] = $row['evalID'];
 				$i++;
+				}
 			}
-		}
+	}
 }
 
 //reverse order of evalIDs
@@ -141,18 +157,25 @@ foreach($courseAccess as $access){
 <!--VIEWING DATA-->
 <div class="roundcorners" style="border:1px solid #000;padding:10px;">
 
-<div style='float:right;'><strong>Department Score Comparisons</strong><br/>
 <?php
-//ONLY SHOW COMPARISONS LINK IF ACCESS GIVEN TO DEPT NAME, NO COURSE NUMBER
-foreach($courseAccess as $access){
-	$access = str_replace(" ","",$access);//make sure no whitespaces
-	if (!preg_match('#[0-9]#',$access)){
-		echo "<a href='../scoreComparisons/departmentSemesters.php?department=" . $access . "'>" . $access . " Scores</a><br/>";
-     }
+//DISPLAY COMPARISON LINKS IF DEPARTMENT ACCESS GIVEN
+if($displayComparisonLinks == 1){
+	echo"<div style='float:right;'><strong>Department Score Comparisons</strong><br/>";
+
+	//ONLY SHOW COMPARISONS LINK IF ACCESS GIVEN TO DEPT NAME, NO COURSE NUMBER
+	foreach($courseAccess as $access){
+		if($access == 'ALL'){
+			echo "<a href='../scoreComparisons/index.php'>" . $access . "</a><br/>";
+		}else{
+			$access = str_replace(" ","",$access);//make sure no whitespaces
+				if (!preg_match('#[0-9]#',$access)){
+					echo "<a href='../scoreComparisons/departmentSemesters.php?department=" . $access . "'>" . $access . "</a><br/>";
+     			}
+		}
+	}
+	echo "</div>";
 }
 ?>
-</div>
-
 <div class="heading">Viewing Data</div>
 <div class='indent smallred'>Make selections from drop down lists.</div>
 <br/>
@@ -163,7 +186,7 @@ foreach($courseAccess as $access){
 <option value='none'>Select course</option>
 
 <?php
-// GET ALL COURSENAMES		
+// GET COURSENAMES	FOR ACCESS GIVEN	
 	$coursenames[]=array();
 	$i=0; //increment lessonids array
 foreach($evalIDs as $accessgiven){
@@ -214,15 +237,17 @@ foreach($evalIDs as $accessgiven){
 <br/>
 </div><br/>
 <?php
-
+//ONLY DISPLAY LIST OF COURSES IF LIMITED ACCESS
+if(!in_array('ALL',$courseAccess)){
 echo"<b>Data for these courses/sections is available.</b>";   
  echo "<table border=0><tr><th>Course</th><th>Semester</th><th>Section</th><th>Instructor</th></tr>";
 
-foreach($evalIDs as $accessgiven){
+	foreach($evalIDs as $accessgiven){
     
-	$query = mysql_query("SELECT * from CourseInfo WHERE evalID='$accessgiven'");
-	while($row = mysql_fetch_array($query)){
-        echo "<tr><td>$row[coursename]</td><td>$row[semester]</td><td>$row[section]</td><td>$row[firstname] $row[lastname]</td></tr>";
+		$query = mysql_query("SELECT * from CourseInfo WHERE evalID='$accessgiven'");
+		while($row = mysql_fetch_array($query)){
+        	echo "<tr><td>$row[coursename]</td><td>$row[semester]</td><td>$row[section]</td><td>$row[firstname] $row[lastname]</td></tr>";
+		}
 	}
 }
 

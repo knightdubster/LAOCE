@@ -1,0 +1,109 @@
+One course, all semesters, one question
+
+course name: ANTH045
+semesters: all
+questions: all
+
+SCORING QUERY - this works
+*************************
+SELECT 
+	s.questionID,
+	ci.coursename,
+	ci.section,
+	ci.semester,
+	a.questionID,
+	a.questionorder,
+	q.type,
+	q.questionText,
+	sum(s.score) as sum,
+	count(s.rowID) as count
+FROM 
+	Scoring s 
+LEFT JOIN CourseInfo ci
+	ON s.evalID = ci.evalID
+LEFT JOIN Assessments a
+	ON s.questionID = a.questionID
+LEFT JOIN Questions q
+	ON s.questionID = q.questionID
+WHERE 
+	ci.coursename = 'ECON333'  AND
+	ci.section = '1' AND
+	ci.semester = 'SP12' AND
+	a.assessmentID = 1
+GROUP BY a.questionorder;	
+		
+	
+GROUP BY s.questionID; gives all questions not just ones in Assessment 1
+
+QUESTION/ANSWERS
+*************************************************
+SELECT
+	g.assessmentID,
+	g.questionID,
+	g.questionorder,
+	q.questionText,
+	q.type,
+	a.answerText,
+	a.ratingvalue
+FROM
+	Assessments g
+LEFT JOIN Questions q
+	ON g.questionID = q.questionID
+LEFT JOIN Answers a
+	ON q.questionID = a.questionid
+WHERE
+	g.assessmentID = 1	
+ORDER BY
+	g.assessmentID, g.questionorder, a.ratingvalue desc;
+	
+MC QUESTION QUERY
+*************************	
+SELECT 
+	s.questionID,
+	ci.coursename,
+	ci.section,
+	ci.semester,
+	q.type,
+	s.score,
+	a.answerText,
+	count(s.rowID) as count
+FROM 
+	Scoring s 
+LEFT JOIN CourseInfo ci
+	ON s.evalID = ci.evalID
+LEFT JOIN Questions q
+	ON s.questionID = q.questionID
+LEFT JOIN Answers a
+	ON s.score = a.answerID
+WHERE 
+	ci.coursename = 'ANTH045'  AND
+	ci.section = '2' AND
+	ci.semester = 'SP12' AND
+	q.type = 'mc-check' AND 
+	a.questionID = s.questionID
+GROUP BY a.answerText ORDER BY s.questionID, s.score;	
+	
+INFO QUERY
+************************	
+SELECT
+	g.assessmentID,
+	g.questionID,
+	g.questionorder,
+	q.questionText,
+	q.type,
+	a.answerText,
+	a.ratingvalue
+FROM
+	Assessments g
+LEFT JOIN Questions q
+	ON g.questionID = q.questionID
+LEFT JOIN Answers a
+	ON q.questionID = a.questionid	
+ORDER BY
+	g.assessmentID, g.questionorder, a.ratingvalue desc;
+
+
+	
+SELECT  MAX(ratingvalue) from Answers WHERE questionID=2;	
+
+

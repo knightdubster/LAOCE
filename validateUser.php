@@ -8,9 +8,12 @@ if(isset($_SERVER['REMOTE_USER'])){
 	}
 */	
 
-$userID="cjh145";
-//$userID="ttt100";
-//$userID="mub27";
+
+$userID="mub27";
+$userID="test";//ALL access
+$userID="cjh145";//admin & dept access
+$userID="rcm10";//dept access
+//$userID="ltb103";
 $userID="srt142";
 $userID=strtolower($userID);
 

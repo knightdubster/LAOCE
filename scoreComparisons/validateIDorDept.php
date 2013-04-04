@@ -13,6 +13,7 @@ $access = 0;//set flag
 			$access = 1;
 		}
 		
+		
 if($access == 0){ //not admin or ID, check for dept access
 
 //DEPT ACCESS
@@ -27,13 +28,21 @@ if($access == 0){ //not admin or ID, check for dept access
 		
 		//CREATE ARRAY OF COURSENAMES FOR ACCESS
 		$courseAccess[]=array();
+		$i=0;//set counter
 		$query = mysql_query("SELECT coursename from CourseAccess WHERE userID ='$userID'");
+		
 		while($row = mysql_fetch_array($query)){
-		$courseAccess[] = $row['coursename'];
+
+		$courseAccess[$i] = $row['coursename'];
+		$i++;
 		}
 		
 		if(in_array($departname,$courseAccess)){
 			$access=1; //passed department name matches allowed CourseAccess
+		}
+		
+		if(in_array('ALL',$courseAccess)){
+			$access=1; //access to all departments granted
 		}
 
 	}

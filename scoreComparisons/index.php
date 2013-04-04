@@ -5,9 +5,7 @@ include "../validateUser.php";
 
 include "../dbconnect.php";
 
-include "validateID.php";
-
-//include "functions.php";
+include "validateIDorDept.php";
 
 ?>
 
@@ -29,11 +27,17 @@ include "validateID.php";
 <div class="logo"><img src="../images/PSUblack-border10.png"></div>
 <div id="header">
 	<div class="laoce">Liberal Arts Online Course Evaluation</div>
-	<div>Admin: <?php echo $name; ?><br/></div>
+	<div>Viewing: <?php echo $name; ?><br/></div>
 </div>
 
 <div id="content" class='roundcorners'>
-	<div style="float:right;"><a href="../admin/">Admin Portal</a></div>
+
+<?php
+if(!in_array('ALL',$courseAccess)){//DON'T SHOW ADMIN LINK IF NOT ADMIN
+			echo"<div style='float:right;'><a href='../admin/'>Admin Portal</a></div>";
+		}
+?>
+	
 	
 	<div class='heading'>
 	Semester Comparison</div>
@@ -68,7 +72,7 @@ $query = mysql_query("SELECT * from Comparison WHERE courses='all' AND semester=
 		}
 		
 
-$query = mysql_query("SELECT * from Comparison WHERE courses='all'");
+$query = mysql_query("SELECT * from Comparison WHERE courses='all' ORDER BY rowID DESC");
 		while($row = mysql_fetch_array($query)){
 			$semester = $row['semester'];
 			$score = $row['score'];

@@ -5,9 +5,8 @@ include "../validateUser.php";
 
 include "../dbconnect.php";
 
-include "validateID.php";
+include "validateIDorDept.php";
 
-//include "functions.php";
 
 //IMPORT VARIABLE assessmentID
 import_request_variables("pg","p_");
@@ -55,7 +54,7 @@ $query = mysql_query("SELECT courses from Comparison ORDER BY courses");
 </div>
 
 <div id="content" class='roundcorners'>
-	<div style="float:right;"><a href="semesters.php">Return</a></div>
+	<div style="float:right;"><a href="index.php">Return</a></div>
 	<div class='heading'>
 	Department Comparison 
 	<?php 

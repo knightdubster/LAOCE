@@ -7,7 +7,7 @@ include "../validateUser.php";
 //CONNECT TO DB
 include "../dbconnect.php";
 
-include "validateID.php";
+include "validateIDorDept.php";
 
 //IMPORT VARIABLE assessmentID
 import_request_variables("pg","p_");

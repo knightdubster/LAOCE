@@ -96,7 +96,7 @@ $(document).ready(function(){
 
 <!--VIEWING DATA-->
 <div class="roundcorners" style="border:1px solid #000;padding:10px;height:100px;">
-<div style="float:right;"><a href="../scoreComparisons/semesters.php">Score Comparisons</a></div>
+<div style="float:right;"><a href="../scoreComparisons/index.php">Score Comparisons</a></div>
 <div class="heading">Viewing Data</div><br/>
 
 <div class='indent'>
@@ -172,6 +172,9 @@ $query = mysql_query("SELECT semester from CourseInfo");
 			}
 		}
 	}
+	
+//reverse order of semesterss
+$semesters = array_reverse($semesters);
 
 ?>
 
@@ -187,7 +190,7 @@ foreach($semesters as $val){
 </form><br/>
 
 
-<a href="addAccess.php">Add Additional Access to Data</a> <br/><br/><a href='courseAccessTable.php'>View/Delete Access</a>
+<a href='courseAccess.php'>Assign Additional Access to Data Viewing</a>
 </div>
 
 <div class="heading" style="margin-bottom:12px;">Course Registration</div>
@@ -238,10 +241,10 @@ foreach($coursenames as $val){
 <option value='4'>4</option>
 <option value='5'>5</option>
 <option value='6'>6</option>
-<option value='3'>7</option>
-<option value='4'>8</option>
-<option value='5'>9</option>
-<option value='6'>10</option>
+<option value='7'>7</option>
+<option value='8'>8</option>
+<option value='9'>9</option>
+<option value='10'>10</option>
 </select>
 </div>
 <div style="clear:left;margin-top:5px;margin-bottom:5px;">

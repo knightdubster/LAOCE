@@ -57,7 +57,7 @@ mysql_query("DROP TABLE CustomEval");
 mysql_query( "CREATE TABLE CustomEval (rowID int primary key auto_increment, coursename varchar(50),instructorAssessment integer, questionID integer)");
 
 echo"<h3>A new 'CustomEval' table has been created.</h3><br/>";
-*/
+
 //CREATE CustomEvalArchive TABLE
 //RETAINS PAST CUSTOM QUESTION/COURSENAME EVEN IF QUESTION IS DELETED FROM CURRENT EVAL
 mysql_query("DROP TABLE CustomEvalArchive");
@@ -67,7 +67,7 @@ mysql_query( "CREATE TABLE CustomEvalArchive (rowID int primary key auto_increme
 echo"<h3>A new 'CustomEvalArchive' table has been created.</h3><br/>";
 
 
-/*
+
 //CREATE Scoring TABLE
 mysql_query("DROP TABLE Scoring");
 
